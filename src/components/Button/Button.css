@@ -1,4 +1,4 @@
-.authBtn{
+.globalBtn{
     width: 100%;
     font-size: 0.7rem;
     outline:1.5px solid var(--theme);
@@ -8,8 +8,12 @@
     border-radius: 2px;
     padding:0.4rem 0;
     color:var(--theme);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.authBtn:active{
+
+.globalBtn:active{
     background-color: var(--theme);
     transform: scale(0.9);
     border: 0;

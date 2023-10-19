@@ -1,3 +1,4 @@
-DashBoard{
-    margin-top: 200px;
+.dashBoard{
+    margin-top: 2rem;
+    align-items: center;
 }

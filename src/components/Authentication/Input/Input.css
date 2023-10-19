@@ -1,15 +1,17 @@
-input{
+.custon-input{
     width: 100%;
     font-size: 0.8rem;
     border: 0;
+    outline: none;
     margin-bottom: 0.5rem ;
     border-bottom: 2px solid var(--grey);
     padding:0.4rem 0;
     background-color: transparent;
     color:var(--textColor)
 }
-input:focus{
+.custon-input:focus{
     border: none;
     outline: none;
+    box-shadow: none;
     border-bottom: 2px solid var(--theme);
 }

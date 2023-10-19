@@ -1,6 +1,6 @@
 import {React,useState} from "react";
 import Input from '../Input/Input';
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import "./Login.css";
 import { toast } from 'react-toastify';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import {auth,db,provider} from '../../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
 import { signInWithPopup } from "firebase/auth";
-
+import { FcGoogle } from 'react-icons/fc';
 
 const Login=()=>{
     const [email,setEmail]=useState('');
@@ -122,11 +122,12 @@ const Login=()=>{
                 <form onSubmit={googleAuth}>
                     <Button 
                         disable={loading}
-                        content={loading?"Loading...":"Login using Google"} 
-                        blue={true}
-                    />
+                        content={loading?"Loading...":"Login using Google "} 
+                        theme={true}
+                        icon={<FcGoogle style={{fontSize:"1rem"}}/>}
+                    ></Button>
                 </form>
-                <p className="changeToSignup-container">Or don't have an Account? <a href="/" className="changeToSignup">Click here</a></p>
+                <p className="changeToSignup-container ">Or don't have an Account? <a href="/" className="changeToSignup">Click here</a></p>
 
             </div>
         </div>

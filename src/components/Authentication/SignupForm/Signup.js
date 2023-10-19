@@ -1,12 +1,13 @@
 import {React,useState} from "react";
 import Input from '../Input/Input';
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import "./Signup.css"
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {auth,db,provider} from '../../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
 import { signInWithPopup } from "firebase/auth";
+import { FcGoogle } from 'react-icons/fc';
 
 
 const Signup=()=>{
@@ -26,7 +27,7 @@ const Signup=()=>{
             .then((result) => {
                 const user = result.user;
                 createDoc(user);
-                toast.success("Signup Successful!")
+                toast.success("Successful!")
                 setLoading(false);
             }).catch((error) => {
                 toast.error(error.message);
@@ -143,7 +144,8 @@ const Signup=()=>{
                     <Button 
                         disable={loading}
                         content={loading?"Loading...":"Signup using Google"} 
-                        blue={true}
+                        theme={true}
+                        icon={<FcGoogle style={{fontSize:"1rem"}}/>}
                     />
                 </form>
                 

@@ -1,0 +1,19 @@
+.cards-row{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    row-gap: 2rem;
+}
+.ant-card{
+    margin: 0 1rem;
+    min-width: 280px;
+    max-width: 30%;
+    box-shadow: 0 0 15px var(--grey) !important;
+    flex: 1;
+    padding: 0;
+    background-color: transparent;
+}
+.ant-card-head-title{
+    color:var(--grey);
+}

@@ -8,6 +8,7 @@
     position: sticky;
     top:0;
     left:0;
+    z-index: 1000;
 }
 .logo{
     font-weight:500;
@@ -17,13 +18,15 @@
 }
 .nav{
     display: flex;
+    align-items: center;
     padding: 1rem;
     gap:1rem;
 }
-.logout{
+.log{
+    color:var(--white);
     opacity: 0.8;
     cursor: pointer;
 }
-.logout:hover{
+.log:hover{
     opacity: 1;
 }
