@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.10.1",
     "firebase": "^10.4.0",
+    "gh-pages": "^6.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,8 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "pre-deploy":"npm run build",
-    "deploy":"gh-pages -d build",
+    "pre-deploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
