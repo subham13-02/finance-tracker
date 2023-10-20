@@ -94,7 +94,7 @@ const DashBoard=()=>{
             if(transaction.type==='income'){
                 console.log(transaction)
                 incomeTotal+=transaction.amount;
-            }else{
+            }else if(transaction.type==='expenses'){
                 expensesTotal += transaction.amount;
             }
         })

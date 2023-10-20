@@ -19,7 +19,7 @@ const  AddExpenses=(props)=>{
                     form={form}
                     layout="vertical"
                     onFinish={(values)=>{
-                        onFinish(values,"expence");
+                        onFinish(values,"expences");
                         form.resetFields();
                     }}
                 >

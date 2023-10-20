@@ -1,5 +1,6 @@
 {
   "name": "finance-tracker",
+  "homepage": "https://subham13-20.github.io/finance-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,6 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "pre-deploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
