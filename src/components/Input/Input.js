@@ -4,7 +4,7 @@ const Input=(props)=>{
     const {input, setInput, type, placeholder}=props;
     return(
         <>
-            <input className={"custon-input"+ input} value={input} type={type} placeholder={placeholder} onChange={(e)=>{setInput(e.target.value)}}/>
+            <input className={"custom-input "+ input} value={input} type={type} placeholder={placeholder} onChange={(e)=>{setInput(e.target.value)}}/>
         </>
     )
 

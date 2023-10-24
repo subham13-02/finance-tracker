@@ -17,7 +17,7 @@ const ThemeToggle = (props) => {
       />
       <label className="toggle-label" htmlFor="toggle">
         <div className="toggle-circle">
-          {!darkMode ? <FiMoon size={20} style={{color:"white"} }/> : <FiSun size={20} style={{color:"black"}}/>}
+          {!darkMode ? <FiMoon size={15} style={{color:"white"} }/> : <FiSun size={16} style={{color:"black"}}/>}
         </div>
       </label>
     </div>

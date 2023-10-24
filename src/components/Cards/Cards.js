@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Row } from 'antd';
-import Button from "../../Button/Button";
+import Button from "../Button/Button";
 import "./Cards.css";
-import { useTheme } from '../../../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 
 const Cards = (props) => {

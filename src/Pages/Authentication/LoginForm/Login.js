@@ -1,6 +1,6 @@
 import {React,useState} from "react";
-import Input from '../Input/Input';
-import Button from "../../Button/Button";
+import Input from '../../../components/Input/Input';
+import Button from "../../../components/Button/Button";
 import "./Login.css";
 import { toast } from 'react-toastify';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -73,11 +73,11 @@ const Login=()=>{
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                console.log("Login user--->",user);
+                setEmail("");
+                setPassword("");
                 toast.success("Signup Successful!");
                 setLoading(false);
-                navigate("/dashboard");
+                navigate("/finance-tracker/dashboard");
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -127,7 +127,7 @@ const Login=()=>{
                         icon={<FcGoogle style={{fontSize:"1rem"}}/>}
                     ></Button>
                 </form>
-                <p className="changeToSignup-container ">Or don't have an Account? <a href="/" className="changeToSignup">Click here</a></p>
+                <p className="changeToSignup-container ">Or don't have an Account? <a href="/finance-tracker/signup" className="changeToSignup">Click here</a></p>
 
             </div>
         </div>

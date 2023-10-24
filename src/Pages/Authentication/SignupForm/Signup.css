@@ -1,4 +1,4 @@
-.loginForm{
+.signupForm{
     display: flex;
     height: 100vh;
     flex-direction: column;
@@ -6,14 +6,14 @@
     align-items: center;
     font-size: 0.9rem;
 }
-.loginForm-container{
-    /* min-width:300px; */
-    min-width: 300px;
+.signupForm-container{
+    min-width:300px;
+    max-width:400px;
     padding: 1.2rem;
     box-shadow:0 0 25px var(--grey);
     border-radius: 10px;
 }
-.changeToSignup ,.changeToSignup-container{
+.changeToLogin,.changeToLogin-container{
     text-align: center;
     color: var(--grey);
     width: 100%;

@@ -4,8 +4,8 @@
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 62px;
-    height: 25px;
+    width: 40px;
+    height: 18px;
     border-radius: 30px;
     background-color: transparent;
     cursor: pointer;
@@ -18,14 +18,14 @@
   
   .toggle-checkbox:checked + .toggle-label .toggle-circle {
     background-color: white;
-    transform: translateX(30px);
+    transform: translateX(18px);
     box-shadow: 5px 0 10px var(--grey) inset;
   }
   
   .toggle-circle {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: #27142b;
     display: flex;

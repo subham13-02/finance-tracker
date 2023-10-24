@@ -1,6 +1,6 @@
 import {React,useState} from "react";
-import Input from '../Input/Input';
-import Button from "../../Button/Button";
+import Input from '../../../components/Input/Input';
+import Button from "../../../components/Button/Button";
 import "./Signup.css"
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -75,7 +75,10 @@ const Signup=()=>{
                 createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log("Signup user--->",user);
+                    setName("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    setEmail("");
                     toast.success("Signup Successful!");
                     createDoc(user);
                     setLoading(false);
@@ -148,8 +151,7 @@ const Signup=()=>{
                         icon={<FcGoogle style={{fontSize:"1rem"}}/>}
                     />
                 </form>
-                
-                <p className="changeToLogin-container">Or having an Account Already? <a href="/login" className="changeToLogin">Click here</a></p>                
+                <p className="changeToLogin-container">Or having an Account Already? <a href="/finance-tracker/login" className="changeToLogin">Click here</a></p>                
             </div>
         </div>
     )

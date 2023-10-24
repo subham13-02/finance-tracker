@@ -1,0 +1,16 @@
+.chartBlock{
+    margin:2rem 0 ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:2rem;
+}
+.lineChart{
+    width: 45%;
+    min-width: 320px;
+}
+.pieChart{
+    width: 45%;
+    min-width: 320px;
+}

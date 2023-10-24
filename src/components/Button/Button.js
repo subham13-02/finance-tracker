@@ -6,8 +6,8 @@ const Button=(props)=>{
     return(
         <div className="button">
            { theme?
-                <button className="globalBtn" type="submit" style={{backgroundColor:"var(--theme)",color:"white"} } onClick={onClick}>{icon} {"  "} {content}</button>
-                :<button className="globalBtn" type="submit" onClick={(e)=>{e.preventDefault();onClick()}}>{content}</button>
+                <button className="globalBtn" type="submit" style={{backgroundColor:"var(--theme)",color:"white"} } onClick={onClick}> {content}  {icon} </button>
+                :<button className="globalBtn " type="submit" onClick={onClick}>{content}</button>
             }
         </div>
     )

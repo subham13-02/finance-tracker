@@ -3,11 +3,11 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    row-gap: 2rem;
+    row-gap: 2.5rem;
 }
 .ant-card{
     margin: 0 1rem;
-    min-width: 280px;
+    min-width: 320px;
     max-width: 30%;
     box-shadow: 0 0 15px var(--grey) !important;
     flex: 1;

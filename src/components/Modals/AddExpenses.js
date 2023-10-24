@@ -1,24 +1,25 @@
 import React from "react";
-import {Modal,Form,Input,DatePicker,Select} from "antd";
-import Button from "../../Button/Button";
+import {Modal, Form, Input, DatePicker, Select} from "antd";
+import Button from "../Button/Button";
 
-const AddIncome=(props)=>{
-   const {isIncomeModalVisible,cancleIncomeModal,onFinish}=props;
+const  AddExpenses=(props)=>{
+   const {isExpensesModalVisible,cancleExpensesModal,onFinish}=props;
    const [form] =Form.useForm();
    const { Option } = Select;
+
    return (
         <div className="modal">
             <Modal
-                title="Add Income"
-                open={isIncomeModalVisible}
-                onCancel={cancleIncomeModal}
+                title="Add Expanses"
+                open={isExpensesModalVisible}
+                onCancel={cancleExpensesModal}
                 footer={null}
             >
                 <Form
                     form={form}
                     layout="vertical"
                     onFinish={(values)=>{
-                        onFinish(values,"income");
+                        onFinish(values,"expense");
                         form.resetFields();
                     }}
                 >
@@ -32,7 +33,7 @@ const AddIncome=(props)=>{
                         },
                         ]}
                     >
-                        <Input type="text" className="custon-input" placeholder="Name"/>
+                        <Input type="text" className="custom-input" placeholder="Name"/>
                     </Form.Item>
 
                     <Form.Item
@@ -45,19 +46,20 @@ const AddIncome=(props)=>{
                         },
                         ]}
                     >
-                        <Input type="number" className="custon-input" placeholder="Amount"/>
+                        <Input type="number" className="custom-input" placeholder="Amount"/>
                     </Form.Item>
 
                     <Form.Item 
-                        name="date-picker" 
-                        label="DatePicker" 
+                        name="date" 
+                        label="Date" 
+                        
                         rules= {[{ 
                             required: true, 
                             type: 'object', 
                             message: 'Please select time!' }
                         ]}
                     >
-                        <DatePicker className="custon-input"/>
+                        <DatePicker className="custom-input" />
                     </Form.Item>
                     <Form.Item
                         name="tag"
@@ -69,9 +71,9 @@ const AddIncome=(props)=>{
                         },
                         ]}
                     >
-                        <Select placeholder="Select your tag">
-                        <Option value="salary">Salary</Option>
-                        <Option value="freelencing">Freelencing</Option>
+                        <Select placeholder="Select your tag" >
+                        <Option value="family">Family</Option>
+                        <Option value="food">Food</Option>
                         <Option value="investment">Investment</Option>
                         </Select>
                     </Form.Item>
@@ -85,4 +87,4 @@ const AddIncome=(props)=>{
    )
 
 }
-export default AddIncome
+export default AddExpenses;

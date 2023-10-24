@@ -22,11 +22,12 @@
     padding: 1rem;
     gap:1rem;
 }
-.log{
+.nan-items{
     color:var(--white);
     opacity: 0.8;
     cursor: pointer;
+    font-size: 0.8rem;
 }
-.log:hover{
+.nan-items:hover{
     opacity: 1;
 }

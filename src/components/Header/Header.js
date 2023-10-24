@@ -14,18 +14,21 @@ const Header=()=>{
     const navigate=useNavigate();
     useEffect(()=>{
         if(user){
-            navigate("/dashboard");
+            navigate("/finance-tracker/dashboard");
         }
     },[user,loading,navigate]);
     const toLogin=()=>{
-        navigate("/login");
+        navigate("/finance-tracker/login");
+    }
+    const toSignup=()=>{
+        navigate("/finance-tracker/signup");
     }
     const logoutToLogin=()=>{
         
         try{
             signOut(auth).then(()=>{
                 toast.success("Logout Successful!")
-                navigate("/login");
+                navigate("/finance-tracker");
             }).catch((error)=>{
                 toast.error(error.message);
             });
@@ -38,8 +41,13 @@ const Header=()=>{
             <div className="logo" >Financely.</div>
             <div className="nav">
                 <div><ThemeToggle/></div>
-                {user&&<div className="log" onClick={logoutToLogin}>Logout</div>}
-                {!user&&<div className="log" onClick={toLogin}>Login</div>}
+                {user&&<div className="nan-items" onClick={logoutToLogin}>Logout</div>}
+                {!user&&
+                    <>
+                        <div className="nan-items" onClick={toLogin}>Login</div>
+                        <div className="nan-items" onClick={toSignup}>Signup</div>
+                    </>
+                }
                 {user&&<Profile user={user} />}
             </div>
         </div>
