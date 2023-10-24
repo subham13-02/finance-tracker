@@ -31,7 +31,6 @@
 .search-input{
     width:95%;
     background-color: transparent;
-    font-size: 1rem;
     padding: 0.3rem 0.5rem;
     border: 0;
     outline: 0;
@@ -48,6 +47,7 @@
 .Table{
     width: 100%;
     min-width: 320px;
+    overflow-x: scroll;
 }
 .csv-btns{
     display:flex;
@@ -59,9 +59,21 @@
     background-color: transparent;
     color: var(--theme);
     padding:0.2rem 0.5rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
 }
 .btn-csv:active{
     background-color: var(--theme);
     color: var(--white);
     transform: scale(0.9);
+}
+.action-table-btn{
+    font-size: 1.2rem;
+}
+.action-table-btn:hover{
+    transform: scale(1.2);
+}
+.action-table-btn:active{
+    transform: scale(1);
 }

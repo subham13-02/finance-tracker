@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Radio, Select, Table } from "antd";
+import { Button, Radio, Select, Table } from "antd";
 import "./TransactionTable.css"
 import {parse,unparse} from "papaparse";
-import {FaSearch} from "react-icons/fa"
+import {FaSearch,FaEdit} from "react-icons/fa"
+import {MdOutlineDeleteForever} from "react-icons/md"
 
 const TransactionTable=(props)=>{
     const { transactions, addTransaction, fetchTransactions}=props;
@@ -38,6 +39,15 @@ const TransactionTable=(props)=>{
         dataIndex: "date",
         key: "date",
       },
+      {
+        title:"Action",
+        render:(_,record)=>(
+          <>
+            <Button type="link" className="action-table-btn"><FaEdit color="var(--grey)"/></Button>
+            <Button type="link" className="action-table-btn"><MdOutlineDeleteForever color="var(--theme)"/></Button>
+          </>
+        )
+      }
     ];
   
     let filteredTransactions = transactions.filter(

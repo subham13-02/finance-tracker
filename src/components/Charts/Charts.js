@@ -63,24 +63,27 @@ const Charts=({ sortedTransactions })=> {
   return (
     <div className="chartBlock">
       <div className="lineChart">
-        <h2 style={{ marginBottom: "1rem" }}>Your Analytics</h2>
+        <h2 style={{ marginBottom: "2rem" }}>Your Analytics</h2>
         <Line
           {...config}
           onReady={(chartInstance) => (chart = chartInstance)}
         />
       </div>
       <div className="pieChart">
-        <h2 style={{ marginBottom:"1rem" }}>Your Spendings & Earnings</h2>
-        <Select
-            className="select-input"
-            onChange={(value) => setPieType(value)}
-            value={pieType}
-            placeholder="Filter Type"
-            allowClear
-            >
-            <Option value="income">Income</Option>
-            <Option value="expense">Expense</Option>
+        <div className="pie-filter">
+          <h2>Your Spendings & Earnings</h2>
+          <Select
+              className="select-input"
+              onChange={(value) => setPieType(value)}
+              value={pieType}
+              placeholder="Filter Type"
+              allowClear
+              >
+              <Option value="income">Income</Option>
+              <Option value="expense">Expense</Option>
           </Select>
+        </div>
+        
         <Pie
           {...spendingConfig}
           onReady={(chartInstance) => (pieChart = chartInstance)}

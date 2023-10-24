@@ -14,3 +14,9 @@
     width: 45%;
     min-width: 320px;
 }
+.pie-filter{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}

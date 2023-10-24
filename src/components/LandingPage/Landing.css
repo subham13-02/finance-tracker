@@ -1,0 +1,40 @@
+.landingPage{
+    padding: 2rem 0;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap-reverse;
+}
+
+.left-headings{
+    width: 45%;
+    min-width: 320px;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.track-finance,.with-financely{
+    font-size: 4rem;
+    margin: 0;
+}
+.track-finance{
+    color:var(--theme);
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color:  var(--theme);
+}
+.track-finance:hover{
+    color:transparent;
+    -webkit-text-stroke-color: var(--theme);
+    transition: all 0.3s;
+}
+.right-styling{
+    min-width: 320px;
+}
+.landingPage-image{
+    border:0;
+    outline: 0;
+}
+.auth-btns{
+    display: flex;
+    gap:1rem;
+    
+}
