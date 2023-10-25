@@ -25,10 +25,10 @@ function App() {
           {loading?
             <Loading/>
             :<Routes>
-              <Route path="/finance-tracker" element={<Landing/>}/>
-              <Route path="finance-tracker/signup" element={<Signup/>}/>
-              <Route path="finance-tracker/login" element={<Login/>}/>
-              <Route path="finance-tracker/dashboard" element={<Dashboard />}/>
+              <Route path="/" element={<Landing/>}/>
+              <Route path="/signup" element={<Signup/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/dashboard" element={<Dashboard />}/>
             </Routes>
           }
         </Router>
