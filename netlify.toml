@@ -1,5 +1,4 @@
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/finance-tracker"
   status = 200
-  
