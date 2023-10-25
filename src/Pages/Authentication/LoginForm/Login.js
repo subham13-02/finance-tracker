@@ -127,7 +127,7 @@ const Login=()=>{
                         icon={<FcGoogle style={{fontSize:"1rem"}}/>}
                     ></Button>
                 </form>
-                <p className="changeToSignup-container ">Or don't have an Account? <a href="/finance-tracker/signup" className="changeToSignup">Click here</a></p>
+                <p className="changeToSignup-container ">Or don't have an Account? <a href="/signup" className="changeToSignup">Click here</a></p>
 
             </div>
         </div>

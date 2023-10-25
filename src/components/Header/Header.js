@@ -14,21 +14,21 @@ const Header=()=>{
     const navigate=useNavigate();
     useEffect(()=>{
         if(user){
-            navigate("/finance-tracker/dashboard");
+            navigate("/dashboard");
         }
     },[user,loading,navigate]);
     const toLogin=()=>{
-        navigate("/finance-tracker/login");
+        navigate("/login");
     }
     const toSignup=()=>{
-        navigate("/finance-tracker/signup");
+        navigate("/signup");
     }
     const logoutToLogin=()=>{
         
         try{
             signOut(auth).then(()=>{
                 toast.success("Logout Successful!")
-                navigate("/finance-tracker");
+                navigate("/");
             }).catch((error)=>{
                 toast.error(error.message);
             });

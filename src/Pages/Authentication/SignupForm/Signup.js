@@ -151,7 +151,7 @@ const Signup=()=>{
                         icon={<FcGoogle style={{fontSize:"1rem"}}/>}
                     />
                 </form>
-                <p className="changeToLogin-container">Or having an Account Already? <a href="/finance-tracker/login" className="changeToLogin">Click here</a></p>                
+                <p className="changeToLogin-container">Or having an Account Already? <a href="/login" className="changeToLogin">Click here</a></p>                
             </div>
         </div>
     )

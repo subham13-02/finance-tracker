@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 const Landing=()=>{
     const navigate=useNavigate();
     const toLogin=()=>{
-        navigate("/finance-tracker/login");
+        navigate("/login");
     }
     const toSignup=()=>{
-        navigate("/finance-tracker/signup");
+        navigate("/signup");
     }
 
     return(
