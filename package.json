@@ -1,6 +1,5 @@
 {
   "name": "finance-tracker",
-  "homepage": "https://subham13-20.github.io/finance-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +9,6 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.10.1",
     "firebase": "^10.4.0",
-    "gh-pages": "^6.0.0",
     "moment": "^2.29.4",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",
