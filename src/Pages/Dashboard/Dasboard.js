@@ -7,8 +7,8 @@ import AddExpenses from "../../components/Modals/AddExpenses";
 import { useTheme } from "../../context/ThemeContext";
 import { toast } from 'react-toastify';
 import {useAuthState} from "react-firebase-hooks/auth"
-import {auth,db} from "../../firebase"
-import { addDoc,collection,getDocs,query } from "firebase/firestore";
+import {auth,db,doc} from "../../firebase"
+import { addDoc,collection,getDocs,query, deleteDoc } from "firebase/firestore";
 import Loading from "../../components/Loading/Loading";
 import TransactionTable from "../../components/Table/TransactionTable";
 import Charts from "../../components/Charts/Charts";
@@ -42,6 +42,23 @@ const DashBoard=()=>{
     const cancleIncomeModal = () => {
         setIsIncomeModalVisible(false);
     };
+    const resetAllTransactions=async (e) => {
+        try {
+          const docRef = doc(db, `users/${user.uid}`);
+          const subcollectionRef = collection(docRef, "transactions");
+    
+          const subcollectionSnapshot = await getDocs(subcollectionRef);
+    
+          subcollectionSnapshot.forEach(async (subDoc) => {
+            await deleteDoc(subDoc.ref);
+          });
+          window.location.reload();
+          toast.success("Subcollection deleted successfully.");
+        } catch (error) {
+          console.error("Error deleting subcollection:", error);
+          toast.error("Error deleting subcollection");
+        }
+      };
 
     const onFinish = (values, type) => {
         const newTransaction = {
@@ -113,7 +130,6 @@ const DashBoard=()=>{
         });
         setTransactions(transactionsArray);
         console.log("Transaction Array", transactionsArray);
-        toast.success("Transactions Fetched!");
         }
         setLoading(false);
     }
@@ -130,9 +146,11 @@ const DashBoard=()=>{
             <Cards 
                 showIncomeModal={showIncomeModal}
                 showExpensesModal={showExpensesModal} 
+                resetAllTransactions={resetAllTransactions}
                 totalBalance={totalBalance}
                 income={income}
                 expense={expense}
+                user={user}
             />
             
             <ConfigProvider

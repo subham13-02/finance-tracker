@@ -7,13 +7,11 @@ function NoTransactions() {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         width: "100%",
-        flexDirection: "column",
-        marginBottom: "2rem",
+        margin:"0"
       }}
     >
-      <img src={noTransactions} style={{ minWidth: "400px", minWidth: "50%",margin: "4rem" }} alt="NoTransations"/>
+      <img src={noTransactions} style={{ minWidth: "320px", maxWidth: "50%",margin: "4rem" }} alt="NoTransations"/>
       
     </div>
   );

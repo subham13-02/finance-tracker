@@ -12,7 +12,7 @@ const TransactionTable=(props)=>{
     const [search, setSearch] = useState("");
     const [sortKey, setSortKey] = useState("");
     const [typeFilter, setTypeFilter] = useState("");
-  
+    console.log("trans==>",transactions)
     const columns = [
       {
         title: "Name",
@@ -148,7 +148,7 @@ const TransactionTable=(props)=>{
                       <button className="btn-csv" onClick={exportCSV}>
                           Export to CSV
                       </button>
-                      <label for="file-csv" className="btn-csv">
+                      <label htmlFor="file-csv" className="btn-csv">
                           Import from CSV
                       </label>
                       <input 

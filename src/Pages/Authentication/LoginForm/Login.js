@@ -101,7 +101,7 @@ const Login=()=>{
                       input={email} 
                       setInput={setEmail} 
                       type={'email'} 
-                      placeholder={"subham@gmail.com"}
+                      placeholder={"example@gmail.com"}
                     />
 
                     <label htmlFor="password">Password</label>
