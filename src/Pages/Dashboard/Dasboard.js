@@ -27,21 +27,27 @@ const DashBoard=()=>{
     const [expense, setExpense] = useState(0);
     const [totalBalance, setTotalBalance] = useState(0);
 
-    const showExpensesModal= () => {
+    //Expense add Modal display
+    const showExpensesModal= () => {  
         setIsExpenseModalVisible(true);
     };
 
+    //Income add Modal display
     const showIncomeModal = () => {
         setIsIncomeModalVisible(true);
     };
 
+    //Modal hide
     const cancleExpensesModal = () => {
         setIsExpenseModalVisible(false);
     };
 
+    //Modal hide
     const cancleIncomeModal = () => {
         setIsIncomeModalVisible(false);
     };
+
+    //Reset the whole finance
     const resetAllTransactions=async (e) => {
         try {
           const docRef = doc(db, `users/${user.uid}`);
@@ -53,13 +59,13 @@ const DashBoard=()=>{
             await deleteDoc(subDoc.ref);
           });
           window.location.reload();
-          toast.success("Subcollection deleted successfully.");
+          toast.success("Reset successfully.");
         } catch (error) {
-          console.error("Error deleting subcollection:", error);
-          toast.error("Error deleting subcollection");
+          toast.error("Error while Reset");
         }
       };
 
+    //Submitting Transaction details from Modal
     const onFinish = (values, type) => {
         const newTransaction = {
         type: type,
@@ -72,13 +78,13 @@ const DashBoard=()=>{
         addTransaction(newTransaction);
     };
 
+    //Adding all the Transactions to firestore db
     async function addTransaction(transaction,many) {
         try {
-        const docRef = await addDoc(
+         await addDoc(
             collection(db, `users/${user.uid}/transactions`),
             transaction
         );
-        console.log("Document written with ID: ", docRef.id);
 
         if (!many) toast.success("Transaction Added!");
         let newArr = transactions;
@@ -86,9 +92,7 @@ const DashBoard=()=>{
         setTransactions(newArr);
         calculateBalance();
         } catch (e) {
-        console.error("Error adding document: ", e);
-
-        if (!many) toast.error("Couldn't add transaction");
+            if (!many) toast.error("Couldn't add transaction");
         }
     }
 
@@ -101,6 +105,7 @@ const DashBoard=()=>{
         calculateBalance();
     }, [transactions]);
 
+    //Callculating Balance
     function calculateBalance() {
         let incomeTotal = 0;
         let expensesTotal = 0;
@@ -118,6 +123,7 @@ const DashBoard=()=>{
         setTotalBalance(incomeTotal - expensesTotal);
     }
 
+    //Fetching Transacctions from firestore db
     async function fetchTransactions() {
         setLoading(true);
         if (user) {
@@ -125,7 +131,6 @@ const DashBoard=()=>{
         const querySnapshot = await getDocs(q);
         let transactionsArray = [];
         querySnapshot.forEach((doc) => {
-            //doc.data() is never undefined for query doc snapshots
             transactionsArray.push(doc.data());
         });
         setTransactions(transactionsArray);
@@ -134,6 +139,7 @@ const DashBoard=()=>{
         setLoading(false);
     }
 
+    //sorting all the transaction according to date
     let sortedTransactions = transactions.sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
       });
@@ -160,10 +166,9 @@ const DashBoard=()=>{
                     
                     // Implement style throughout the Ant Design Componenents using token
                     token: {
-                        
-                        colorPrimary: "rgb(207, 56, 245)",
+                        colorPrimary: "rgb(164, 48, 231)",
                         borderRadius: 2,
-                        // Alias Token
+                        fontSize: 14,
                         colorBgContainer: 'transparent',
                     }
                 }}
@@ -179,16 +184,17 @@ const DashBoard=()=>{
                     onFinish={onFinish}
                 />
                 {transactions && transactions.length !== 0 ? (
-                    <Charts sortedTransactions={sortedTransactions} />
+                    <>
+                        <Charts sortedTransactions={sortedTransactions} />
+                        <TransactionTable
+                            transactions={transactions}
+                            addTransaction={addTransaction}
+                            fetchTransactions={fetchTransactions}
+                        />
+                    </>
                 ) : (
                     <NoTransactions />
                 )}
-                <TransactionTable
-                    transactions={transactions}
-                    addTransaction={addTransaction}
-                    fetchTransactions={fetchTransactions}
-                />
-
             </ConfigProvider>
             
             
