@@ -10,7 +10,7 @@ const  AddExpenses=(props)=>{
    return (
         <div className="modal">
             <Modal
-                title="Add Expanses"
+                title="Add Expenses"
                 open={isExpensesModalVisible}
                 onCancel={cancleExpensesModal}
                 footer={null}

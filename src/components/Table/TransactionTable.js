@@ -7,12 +7,12 @@ import {FaSearch,FaEdit} from "react-icons/fa"
 import {MdOutlineDeleteForever} from "react-icons/md"
 
 const TransactionTable=(props)=>{
-    const { transactions, addTransaction, fetchTransactions}=props;
+    const { transactions, addTransaction, fetchTransactions ,deleteTransaction}=props;
     const { Option } = Select;
     const [search, setSearch] = useState("");
     const [sortKey, setSortKey] = useState("");
     const [typeFilter, setTypeFilter] = useState("");
-    console.log("trans==>",transactions)
+
     const columns = [
       {
         title: "Name",
@@ -41,10 +41,10 @@ const TransactionTable=(props)=>{
       },
       {
         title:"Action",
-        render:(_,record)=>(
+        render:(record)=>(
           <>
-            <Button type="link" className="action-table-btn"><FaEdit color="var(--grey)"/></Button>
-            <Button type="link" className="action-table-btn"><MdOutlineDeleteForever color="var(--theme)"/></Button>
+            <Button type="link" className="action-table-btn" ><FaEdit color="var(--grey)"/></Button>
+            <Button type="link" className="action-table-btn" onClick={()=>{deleteTransaction(record.id)}}><MdOutlineDeleteForever color="var(--theme)"/></Button>
           </>
         )
       }
@@ -89,7 +89,6 @@ const TransactionTable=(props)=>{
             //Now results.data is an array of objects representing  CSV rows
             for (const transaction of results.data) {
               //Writen each transaction to Firebase ,  canuse the addTransaction function here 
-              console.log("Transactions", transaction);
               const newTransaction ={
                 ...transaction,
                 amount: parseFloat(transaction.amount),

@@ -23,7 +23,7 @@ const Header=()=>{
     const toSignup=()=>{
         navigate("/signup");
     }
-    const logoutToLogin=()=>{
+    const logoutToLanding=()=>{
         
         try{
             signOut(auth).then(()=>{
@@ -41,7 +41,7 @@ const Header=()=>{
             <div className="logo" >Financely.</div>
             <div className="nav">
                 <div><ThemeToggle/></div>
-                {user&&<div className="nan-items" onClick={logoutToLogin}>Logout</div>}
+                {user&&<div className="nan-items" onClick={logoutToLanding}>Logout</div>}
                 {!user&&
                     <>
                         <div className="nan-items" onClick={toLogin}>Login</div>

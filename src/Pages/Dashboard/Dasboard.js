@@ -8,7 +8,7 @@ import { useTheme } from "../../context/ThemeContext";
 import { toast } from 'react-toastify';
 import {useAuthState} from "react-firebase-hooks/auth"
 import {auth,db,doc} from "../../firebase"
-import { addDoc,collection,getDocs,query, deleteDoc } from "firebase/firestore";
+import { addDoc,collection,getDocs,query, deleteDoc, QuerySnapshot } from "firebase/firestore";
 import Loading from "../../components/Loading/Loading";
 import TransactionTable from "../../components/Table/TransactionTable";
 import Charts from "../../components/Charts/Charts";
@@ -47,6 +47,19 @@ const DashBoard=()=>{
         setIsIncomeModalVisible(false);
     };
 
+    //deleting the selected transaction from firestore
+    const deleteTransaction=async(id)=>{
+        try {
+            const docRef = doc(db, `users/${user.uid}/transactions/${id}`);
+      
+            await deleteDoc(docRef);
+            fetchTransactions();
+            toast.success("Deleted successfully.");
+          } catch (error) {
+            toast.error("Error while Deleting");
+          }
+    }
+
     //Reset the whole finance
     const resetAllTransactions=async (e) => {
         try {
@@ -58,7 +71,7 @@ const DashBoard=()=>{
           subcollectionSnapshot.forEach(async (subDoc) => {
             await deleteDoc(subDoc.ref);
           });
-          window.location.reload();
+          fetchTransactions();
           toast.success("Reset successfully.");
         } catch (error) {
           toast.error("Error while Reset");
@@ -129,12 +142,12 @@ const DashBoard=()=>{
         if (user) {
         const q = query(collection(db, `users/${user.uid}/transactions`));
         const querySnapshot = await getDocs(q);
+
         let transactionsArray = [];
         querySnapshot.forEach((doc) => {
-            transactionsArray.push(doc.data());
+            transactionsArray.push({...doc.data(),id:doc.id});
         });
         setTransactions(transactionsArray);
-        console.log("Transaction Array", transactionsArray);
         }
         setLoading(false);
     }
@@ -178,23 +191,22 @@ const DashBoard=()=>{
                     isIncomeModalVisible={isIncomeModalVisible} 
                     onFinish={onFinish}
                 />
-                <AddExpenses 
+                <AddExpenses
                     cancleExpensesModal={cancleExpensesModal} 
                     isExpensesModalVisible={isExpensesModalVisible}  
                     onFinish={onFinish}
                 />
                 {transactions && transactions.length !== 0 ? (
-                    <>
-                        <Charts sortedTransactions={sortedTransactions} />
-                        <TransactionTable
-                            transactions={transactions}
-                            addTransaction={addTransaction}
-                            fetchTransactions={fetchTransactions}
-                        />
-                    </>
+                    <Charts sortedTransactions={sortedTransactions} />
                 ) : (
                     <NoTransactions />
                 )}
+                <TransactionTable
+                        transactions={transactions}
+                        addTransaction={addTransaction}
+                        fetchTransactions={fetchTransactions}
+                        deleteTransaction={deleteTransaction}
+                />
             </ConfigProvider>
             
             

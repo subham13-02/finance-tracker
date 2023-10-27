@@ -12,6 +12,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 const Signup=()=>{
     
+    const [form,setForm]=useState({name:'',email:"",})
     const [name,setName]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
