@@ -4,11 +4,12 @@ import "./Dashboard.css"
 import {ConfigProvider, theme} from "antd"
 import AddIncome from "../../components/Modals/AddIncome";
 import AddExpenses from "../../components/Modals/AddExpenses";
+import EditModal from "../../components/Modals/EditModal";
 import { useTheme } from "../../context/ThemeContext";
 import { toast } from 'react-toastify';
 import {useAuthState} from "react-firebase-hooks/auth"
 import {auth,db,doc} from "../../firebase"
-import { addDoc,collection,getDocs,query, deleteDoc, QuerySnapshot } from "firebase/firestore";
+import { addDoc,collection,getDocs,query, deleteDoc, updateDoc } from "firebase/firestore";
 import Loading from "../../components/Loading/Loading";
 import TransactionTable from "../../components/Table/TransactionTable";
 import Charts from "../../components/Charts/Charts";
@@ -21,12 +22,15 @@ const DashBoard=()=>{
     const [user] = useAuthState(auth);
     const [isExpensesModalVisible, setIsExpenseModalVisible] = useState(false);
     const [isIncomeModalVisible, setIsIncomeModalVisible] = useState(false);
+    const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+
     const { darkMode }= useTheme();
 
     const [income, setIncome] = useState(0);
     const [expense, setExpense] = useState(0);
     const [totalBalance, setTotalBalance] = useState(0);
 
+    const [toBeUpdated,setToBeUpdated]=useState({})
     //Expense add Modal display
     const showExpensesModal= () => {  
         setIsExpenseModalVisible(true);
@@ -37,15 +41,54 @@ const DashBoard=()=>{
         setIsIncomeModalVisible(true);
     };
 
-    //Modal hide
-    const cancleExpensesModal = () => {
+    //Edit Modal display
+    const showEditModal = (record) => {
+        setToBeUpdated(record);
+        setIsEditModalVisible(true);
+        
+    };
+
+    //ExpensesModal hide
+    const cancelExpensesModal = () => {
         setIsExpenseModalVisible(false);
     };
 
-    //Modal hide
-    const cancleIncomeModal = () => {
+    //IncomeModal hide
+    const cancelIncomeModal = () => {
         setIsIncomeModalVisible(false);
     };
+
+    //EditModal hide
+    const cancelEditModal = () => {
+        setIsEditModalVisible(false);
+    };
+
+    //Updating the selected transaction from firestore
+    const onEdit=(values, type) => {
+        const newUpdate = {
+        type: type,
+        date: values.date.format("YYYY-MM-DD"),
+        amount: parseFloat(values.amount),
+        tag: values.tag,
+        name: values.name,
+        };
+        console.log("New Transaction", newUpdate);
+        updateTransaction(newUpdate);
+    };
+
+    const updateTransaction=async(transactionToBeUpdate)=>{
+        try {
+            const docRef = doc(db, `users/${user.uid}/transactions/${toBeUpdated.id}`);
+      
+            await updateDoc(docRef,transactionToBeUpdate);
+            fetchTransactions();
+            toast.success("Updated successfully.");
+          } catch (error) {
+            toast.error("Error while Updatiing");
+          }finally{
+            cancelEditModal();
+        }
+    }
 
     //deleting the selected transaction from firestore
     const deleteTransaction=async(id)=>{
@@ -56,6 +99,7 @@ const DashBoard=()=>{
             fetchTransactions();
             toast.success("Deleted successfully.");
           } catch (error) {
+            
             toast.error("Error while Deleting");
           }
     }
@@ -187,14 +231,20 @@ const DashBoard=()=>{
                 }}
             >
                 <AddIncome 
-                    cancleIncomeModal={cancleIncomeModal} 
+                    cancleIncomeModal={cancelIncomeModal} 
                     isIncomeModalVisible={isIncomeModalVisible} 
                     onFinish={onFinish}
                 />
                 <AddExpenses
-                    cancleExpensesModal={cancleExpensesModal} 
+                    cancleExpensesModal={cancelExpensesModal} 
                     isExpensesModalVisible={isExpensesModalVisible}  
                     onFinish={onFinish}
+                />
+                <EditModal
+                    cancleEditModal={cancelEditModal} 
+                    isEditModalVisible={isEditModalVisible}  
+                    onEdit={onEdit}
+                    toBeUpdated={toBeUpdated}
                 />
                 {transactions && transactions.length !== 0 ? (
                     <Charts sortedTransactions={sortedTransactions} />
@@ -205,6 +255,7 @@ const DashBoard=()=>{
                         transactions={transactions}
                         addTransaction={addTransaction}
                         fetchTransactions={fetchTransactions}
+                        showEditModal={showEditModal}
                         deleteTransaction={deleteTransaction}
                 />
             </ConfigProvider>

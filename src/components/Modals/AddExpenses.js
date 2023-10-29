@@ -3,7 +3,7 @@ import {Modal, Form, Input, DatePicker, Select} from "antd";
 import Button from "../Button/Button";
 
 const  AddExpenses=(props)=>{
-   const {isExpensesModalVisible,cancleExpensesModal,onFinish}=props;
+   const {isExpensesModalVisible,cancelExpensesModal,onFinish}=props;
    const [form] =Form.useForm();
    const { Option } = Select;
 
@@ -12,7 +12,7 @@ const  AddExpenses=(props)=>{
             <Modal
                 title="Add Expenses"
                 open={isExpensesModalVisible}
-                onCancel={cancleExpensesModal}
+                onCancel={cancelExpensesModal}
                 footer={null}
             >
                 <Form

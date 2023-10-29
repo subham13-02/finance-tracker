@@ -7,7 +7,7 @@ import {FaSearch,FaEdit} from "react-icons/fa"
 import {MdOutlineDeleteForever} from "react-icons/md"
 
 const TransactionTable=(props)=>{
-    const { transactions, addTransaction, fetchTransactions ,deleteTransaction}=props;
+    const { transactions, addTransaction, fetchTransactions ,deleteTransaction, showEditModal}=props;
     const { Option } = Select;
     const [search, setSearch] = useState("");
     const [sortKey, setSortKey] = useState("");
@@ -43,7 +43,7 @@ const TransactionTable=(props)=>{
         title:"Action",
         render:(record)=>(
           <>
-            <Button type="link" className="action-table-btn" ><FaEdit color="var(--grey)"/></Button>
+            <Button type="link" className="action-table-btn" onClick={()=>{showEditModal(record)}} ><FaEdit color="var(--grey)"/></Button>
             <Button type="link" className="action-table-btn" onClick={()=>{deleteTransaction(record.id)}}><MdOutlineDeleteForever color="var(--theme)"/></Button>
           </>
         )

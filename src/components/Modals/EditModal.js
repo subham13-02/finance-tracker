@@ -3,25 +3,30 @@ import {Modal,Form,Input,DatePicker,Select} from "antd";
 import Button from "../Button/Button";
 
 const AddIncome=(props)=>{
-   const {isIncomeModalVisible,cancelIncomeModal,onFinish}=props;
+   const {cancelEditModal, isEditModalVisible, onEdit, toBeUpdated}=props;
    const [form] =Form.useForm();
    const { Option } = Select;
    return (
         <div className="modal">
             <Modal
-                title="Add Income"
-                open={isIncomeModalVisible}
-                onCancel={cancelIncomeModal}
+                title="Edit Transaction"
+                open={isEditModalVisible}
+                onCancel={cancelEditModal}
                 footer={null}
             >
                 <Form
                     form={form}
                     layout="vertical"
+                    initialValues={{
+                        name:toBeUpdated.name,
+                        amount:toBeUpdated.amount,
+                        tag:toBeUpdated.tag
+                    }}
                     onFinish={(values)=>{
-                        onFinish(values,"income");
+                        onEdit(values,toBeUpdated.type);
                         form.resetFields();
                     }}
-                >
+                > 
                     <Form.Item
                         name="name"
                         label="Name"
