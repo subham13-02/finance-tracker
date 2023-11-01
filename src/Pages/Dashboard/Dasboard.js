@@ -30,7 +30,8 @@ const DashBoard=()=>{
     const [expense, setExpense] = useState(0);
     const [totalBalance, setTotalBalance] = useState(0);
 
-    const [toBeUpdated,setToBeUpdated]=useState({})
+    const [toBeUpdated,setToBeUpdated]=useState({});
+    
     //Expense add Modal display
     const showExpensesModal= () => {  
         setIsExpenseModalVisible(true);
@@ -231,12 +232,12 @@ const DashBoard=()=>{
                 }}
             >
                 <AddIncome 
-                    cancleIncomeModal={cancelIncomeModal} 
+                    cancelIncomeModal={cancelIncomeModal} 
                     isIncomeModalVisible={isIncomeModalVisible} 
                     onFinish={onFinish}
                 />
                 <AddExpenses
-                    cancleExpensesModal={cancelExpensesModal} 
+                    cancelExpensesModal={cancelExpensesModal} 
                     isExpensesModalVisible={isExpensesModalVisible}  
                     onFinish={onFinish}
                 />
