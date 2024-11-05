@@ -3,7 +3,7 @@ import {Modal,Form,Input,DatePicker,Select} from "antd";
 import Button from "../Button/Button";
 
 const AddIncome=(props)=>{
-   const {isIncomeModalVisible,cancelIncomeModal,onFinish}=props;
+   const {isIncomeModalVisible, cancelIncomeModal,onFinish}=props;
    const [form] =Form.useForm();
    const { Option } = Select;
    return (
@@ -73,6 +73,9 @@ const AddIncome=(props)=>{
                         <Option value="salary">Salary</Option>
                         <Option value="freelencing">Freelencing</Option>
                         <Option value="investment">Investment</Option>
+                        <Option value="investment">Home Rent</Option>
+                        <Option value="investment">Travel</Option>
+                        <Option value="investment">Others</Option> 
                         </Select>
                     </Form.Item>
                     <Button 

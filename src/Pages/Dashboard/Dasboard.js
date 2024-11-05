@@ -85,10 +85,10 @@ const DashBoard=()=>{
             fetchTransactions();
             toast.success("Updated successfully.");
           } catch (error) {
-            toast.error("Error while Updatiing");
+            toast.error("Error while Updating");
           }finally{
             cancelEditModal();
-        }
+          }
     }
 
     //deleting the selected transaction from firestore
@@ -100,7 +100,6 @@ const DashBoard=()=>{
             fetchTransactions();
             toast.success("Deleted successfully.");
           } catch (error) {
-            
             toast.error("Error while Deleting");
           }
     }

@@ -75,10 +75,12 @@ const  AddExpenses=(props)=>{
                         <Option value="family">Family</Option>
                         <Option value="food">Food</Option>
                         <Option value="investment">Investment</Option>
+                        <Option value="investment">Grocery</Option>
+                        <Option value="investment">Travel</Option>
                         </Select>
                     </Form.Item>
                     <Button 
-                        content={"Add Income"} 
+                        content={"Add Expense"} 
                         theme={true}
                     />
                 </Form>
